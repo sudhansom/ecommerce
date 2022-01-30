@@ -15,9 +15,9 @@ export const createUser = async (
       firstName,
       lastName,
       email,
-      address,
-      password,
-      role,
+      address = [],
+      password = [],
+      role = [],
       order = [],
     } = req.body
 
