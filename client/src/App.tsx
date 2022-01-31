@@ -1,12 +1,16 @@
 import React from 'react';
-
+import axios from 'axios'
 import './App.css';
 import GoogleLogin from 'react-google-login'
 
 
 function App() {
-  const responseGoogle = (response: any) => {
+  const responseGoogle = async (response: any) => {
   console.log(response.tokenId);
+  const tokenId = response.tokenId
+  const result = await axios.post('/http:localhost:500/api/v1/login', {
+    "tokenId": tokenId,
+  })
 }
   return (
     <div className="App">
