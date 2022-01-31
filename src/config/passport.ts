@@ -10,8 +10,7 @@ export const googleStrategy = new GoogleTokenStrategy(
   {
     clientId: process.env.GOOGLE_CLIENT_ID,
   },
-  (parsedToken: any, googleId: any, next: any) => {
-    console.log('parsed token', parsedToken)
-    next(null, { parsedToken: parsedToken })
+  (parsedToken: any, googleId: any, done: any) => {
+    done(null, parsedToken)
   }
 )

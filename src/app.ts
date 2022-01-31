@@ -17,7 +17,7 @@ import { googleStrategy } from './config/passport'
 dotenv.config({ path: '.env' })
 const app = express()
 
-app.use(cors)
+app.use(cors())
 
 // Express configuration
 app.set('port', process.env.PORT || 5000)
@@ -30,7 +30,7 @@ app.use(lusca.xssProtection(true))
 app.use(passport.initialize())
 
 // use google Strategy
-//passport.use(googleStrategy)
+passport.use(googleStrategy)
 
 // Use movie router
 app.use('/api/v1/movies', movieRouter)

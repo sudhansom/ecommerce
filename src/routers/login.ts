@@ -5,9 +5,9 @@ const router = express.Router()
 
 router.post(
   '/',
-  //passport.authenticate('google-id-token', { session: false }),
+  passport.authenticate('google-id-token', { session: false }),
   (req: Request, res: Response) => {
-    res.json('login Successful...')
+    res.json('successfully logedin...')
   }
 )
 
