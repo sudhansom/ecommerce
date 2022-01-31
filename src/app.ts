@@ -30,7 +30,7 @@ app.use(lusca.xssProtection(true))
 app.use(passport.initialize())
 
 // use google Strategy
-passport.use(googleStrategy)
+//passport.use(googleStrategy)
 
 // Use movie router
 app.use('/api/v1/movies', movieRouter)

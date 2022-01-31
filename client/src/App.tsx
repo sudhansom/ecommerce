@@ -6,11 +6,12 @@ import GoogleLogin from 'react-google-login'
 
 function App() {
   const responseGoogle = async (response: any) => {
-  console.log(response.tokenId);
+  // console.log(response.tokenId);
   const tokenId = response.tokenId
-  const result = await axios.post('http://localhost:5000/api/v1/login', {
+  await axios.post('http://localhost:5000/api/v1/login', {
     id_token: tokenId,
   })
+  
 }
   return (
     <div className="App">
