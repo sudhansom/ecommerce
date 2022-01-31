@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 
 import movieRouter from './routers/movie'
 import userRouter from './routers/users'
+import logInRouter from './routers/login'
+
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 import compression from 'compression'
@@ -29,6 +31,7 @@ passport.use(googleStrategy)
 // Use movie router
 app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/login', logInRouter)
 
 // Custom API error handler
 app.use(apiErrorHandler)
