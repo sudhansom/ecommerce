@@ -2,6 +2,8 @@ import express from 'express'
 import lusca from 'lusca'
 import dotenv from 'dotenv'
 
+import cors from 'cors'
+
 import movieRouter from './routers/movie'
 import userRouter from './routers/users'
 import logInRouter from './routers/login'
@@ -14,6 +16,8 @@ import { googleStrategy } from './config/passport'
 
 dotenv.config({ path: '.env' })
 const app = express()
+
+app.use(cors)
 
 // Express configuration
 app.set('port', process.env.PORT || 5000)

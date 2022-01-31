@@ -1,5 +1,6 @@
 import errorHandler from 'errorhandler'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 import app from './app'
 import { MONGODB_URI } from './util/secrets'
