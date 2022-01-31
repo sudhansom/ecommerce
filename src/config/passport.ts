@@ -4,8 +4,14 @@ import GoogleTokenStrategy from 'passport-google-id-token'
 import { Strategy } from 'passport-jwt'
 import { Request, Response, NextFunction } from 'express'
 
-//const LocalStrategy = passportLocal.Strategy
+const LocalStrategy = passportLocal.Strategy
 
-const googleStrategy = new GoogleTokenStrategy({
-  clientId: process.env.GOOGLE_CLIENT_ID,
-})
+export const googleStrategy = new GoogleTokenStrategy(
+  {
+    clientId: process.env.GOOGLE_CLIENT_ID,
+  },
+  (parsedToken: any, googleId: any, next: any) => {
+    console.log('parsed token', parsedToken)
+    next(null, { parsedToken: parsedToken })
+  }
+)
