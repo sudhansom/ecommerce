@@ -9,7 +9,7 @@ function App() {
   console.log(response.tokenId);
   const tokenId = response.tokenId
   const result = await axios.post('/http:localhost:500/api/v1/login', {
-    "tokenId": tokenId,
+    id_token: tokenId,
   })
 }
   return (
