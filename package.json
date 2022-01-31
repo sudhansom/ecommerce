@@ -39,7 +39,9 @@
     "mongodb-memory-server": "^6.3.1",
     "mongoose": "^5.11.15",
     "nodemailer": "^6.4.3",
-    "passport": "^0.4.1",
+    "passport": "^0.5.2",
+    "passport-google-id-token": "^0.4.7",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "winston": "^3.2.1"
   },
