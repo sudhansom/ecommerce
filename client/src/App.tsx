@@ -5,10 +5,13 @@ import GoogleLogin from 'react-google-login'
 
 
 function App() {
+  const responseGoogle = (response: any) => {
+  console.log(response);
+}
   return (
     <div className="App">
        <GoogleLogin
-    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    clientId="446627249737-sj7pmkvsibbf16vkhrsaqqt3kmi42n7j.apps.googleusercontent.com"
     buttonText="Login"
     onSuccess={responseGoogle}
     onFailure={responseGoogle}
