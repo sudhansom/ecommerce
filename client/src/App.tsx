@@ -21,8 +21,7 @@ function App() {
   return (
     <div className="App">
        <GoogleLogin
-    clientId="1055268114660-v6c1ohs1dc1h9nnqicoglnire4sse33l.apps.googleusercontent.com"
-    // {process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
+    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
     buttonText="Login"
     onSuccess={responseGoogle}
     onFailure={responseGoogle}
