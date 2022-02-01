@@ -1,5 +1,5 @@
 import express from 'express'
-
+import passport from 'passport'
 import {
   createMovie,
   findById,
@@ -13,7 +13,11 @@ const router = express.Router()
 // Every path we define here will get /api/v1/movies prefix
 router.get('/', findAll)
 router.get('/:movieId', findById)
-router.put('/:movieId', updateMovie)
+router.put(
+  '/:movieId',
+  passport.authenticate('jwt', { session: false }),
+  updateMovie
+)
 router.delete('/:movieId', deleteMovie)
 router.post('/', createMovie)
 
