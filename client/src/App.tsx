@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios'
 import './App.css';
 import GoogleLogin from 'react-google-login'
 
 type Response = {
+  token: string
+}
+type RequestHeaderTypes = {
   token: string
 }
 
@@ -13,11 +16,24 @@ function App() {
   const tokenId = response.tokenId
   const result = await axios.post('http://localhost:5000/api/v1/login', {
     id_token: tokenId,
+
   })
   console.log(result.data)
   localStorage.setItem("token", result.data)
-  
 }
+const getAllMovies = async () => {
+  
+  const requestHeaders = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`
+  }
+    const result = await axios.get('http://localhost:5000/api/v1/movies', {headers: requestHeaders })
+    console.log("allMoviee:", result)
+  }
+
+useEffect(()=>{
+   getAllMovies()
+  
+},[])
   return (
     <div className="App">
        <GoogleLogin

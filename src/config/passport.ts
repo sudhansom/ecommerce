@@ -23,7 +23,6 @@ export const jwtStrategy = new JwtStrategy(
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   },
   (payload: any, done: any) => {
-    const user = payload.email
-    done(null, user)
+    done(null, payload)
   }
 )

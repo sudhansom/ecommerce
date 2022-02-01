@@ -1,5 +1,6 @@
 import express from 'express'
 import passport from 'passport'
+import { adminCheck } from '../middlewares/adminCheck'
 import {
   createMovie,
   findById,
@@ -11,7 +12,12 @@ import {
 const router = express.Router()
 
 // Every path we define here will get /api/v1/movies prefix
-router.get('/', findAll)
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  adminCheck,
+  findAll
+)
 router.get('/:movieId', findById)
 router.put(
   '/:movieId',
