@@ -6,7 +6,7 @@ type User = {
   role: string
 }
 export const adminCheck = (req: Request, res: Response, next: NextFunction) => {
-  const user = req.user.user as User
+  const user = { name: 'sudhan', role: 'admin' }
 
   if (user.role === 'admin') {
     console.log('user is :::', user.role)

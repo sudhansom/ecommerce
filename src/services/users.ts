@@ -5,10 +5,15 @@ const createUser = async (user: UserDocument): Promise<UserDocument> => {
   return user.save()
 }
 
-const findAllUsers = async () => {
-  return Users.find()
+const findAll = async () => {
+  return await Users.find()
+}
+const findById = async (userId: string) => {
+  return await Users.findById(userId)
 }
 
 export default {
   createUser,
+  findAll,
+  findById,
 }

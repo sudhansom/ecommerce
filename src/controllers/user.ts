@@ -5,13 +5,32 @@ import UserService from '../services/users'
 import { BadRequestError } from '../helpers/apiError'
 
 //GET all users '/users'
-export const findAllUsers = async (
+export const findAll = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const allUsers = await UserService.findAll()
+    res.json(allUsers)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+//GET one specific user by ID  '/users:userId'
+export const findById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userId = req.params.userId as string
+    const oneUser = await UserService.findById(userId)
+    res.json(oneUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
