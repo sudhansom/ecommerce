@@ -8,7 +8,7 @@ const createUser = async (user: UserDocument): Promise<UserDocument> => {
 const findAll = async () => {
   return await Users.find()
 }
-const findById = async (userId: string) => {
+const findUserById = async (userId: string) => {
   return await Users.findById(userId)
 }
 
