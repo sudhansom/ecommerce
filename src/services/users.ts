@@ -5,15 +5,32 @@ const createUser = async (user: UserDocument): Promise<UserDocument> => {
   return user.save()
 }
 
-const findAll = async () => {
-  return await Users.find()
+const findAll = async (): Promise<UserDocument[]> => {
+  return Users.find()
 }
-const findUserById = async (userId: string) => {
-  return await Users.findById(userId)
+const findUserById = async (userId: string): Promise<UserDocument> => {
+  const foundUser = await Users.findById(userId)
+
+  if (!foundUser) {
+    throw new NotFoundError(`User ${userId} not found`)
+  }
+  return foundUser
+}
+
+const updateUser = async (
+  userId: string,
+  update: Partial<UserDocument>
+): Promise<UserDocument | null> => {
+  const foundUser = await Users.findByIdAndUpdate(userId, update)
+  if (!foundUser) {
+    throw new NotFoundError(`User ${userId} not found`)
+  }
+  return foundUser
 }
 
 export default {
   createUser,
   findAll,
-  findById,
+  findUserById,
+  updateUser,
 }

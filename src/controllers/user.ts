@@ -22,14 +22,14 @@ export const findAll = async (
   }
 }
 //GET one specific user by ID  '/users:userId'
-export const findById = async (
+export const findUserById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const userId = req.params.userId as string
-    const oneUser = await UserService.findById(userId)
+    const oneUser = await UserService.findUserById(userId)
     res.json(oneUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -71,6 +71,26 @@ export const createUser = async (
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+// PUT update a user /users/:userId
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const update = req.body
+    const userId = req.params.userId
+    const updatedUser = await UserService.update(userId, update)
+    res.json(updatedUser)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Response', error))
     } else {
       next(error)
     }

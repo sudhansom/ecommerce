@@ -2,18 +2,18 @@ import express from 'express'
 
 import {
   createUser,
-  findById,
+  findUserById,
   //   deleteMovie,
   findAll,
-  //   updateMovie,
+  updateUser,
 } from '../controllers/user'
 
 const router = express.Router()
 
 // Every path we define here will get /api/v1/movies prefix
 router.get('/', findAll)
-router.get('/:userId', findById)
-// router.put('/:movieId', updateMovie)
+router.get('/:userId', findUserById)
+router.put('/:userId', updateUser)
 // router.delete('/:movieId', deleteMovie)
 router.post('/', createUser)
 
