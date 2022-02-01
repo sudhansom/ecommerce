@@ -3,7 +3,7 @@ import express from 'express'
 import {
   createUser,
   findUserById,
-  //   deleteMovie,
+  deleteUser,
   findAll,
   updateUser,
 } from '../controllers/user'
@@ -14,7 +14,7 @@ const router = express.Router()
 router.get('/', findAll)
 router.get('/:userId', findUserById)
 router.put('/:userId', updateUser)
-// router.delete('/:movieId', deleteMovie)
+router.delete('/:userId', deleteUser)
 router.post('/', createUser)
 
 export default router

@@ -86,13 +86,32 @@ export const updateUser = async (
   try {
     const update = req.body
     const userId = req.params.userId
-    const updatedUser = await UserService.update(userId, update)
+    const updatedUser = await UserService.updateUser(userId, update)
     res.json(updatedUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Response', error))
     } else {
       next(error)
+    }
+  }
+}
+
+// DELETE /users/:userId
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userId = req.params.userId
+    const deleted = await Users.findByIdAndDelete(userId)
+    res.json(deleted)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Response', error))
+    } else {
+      next(eror)
     }
   }
 }
