@@ -4,6 +4,22 @@ import Users from '../models/Users'
 import UserService from '../services/users'
 import { BadRequestError } from '../helpers/apiError'
 
+//GET all users '/users'
+export const findAllUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const allUsers = await UserService.findAll()
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
 // POST /movies
 export const createUser = async (
   req: Request,
