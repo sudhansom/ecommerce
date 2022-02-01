@@ -11,10 +11,11 @@ type RequestHeaderTypes = {
 }
 
 function App() {
+  axios.defaults.baseURL='http://localhost:5000/api/v1'
   const responseGoogle = async (response: any) => {
   console.log(response.tokenId);
   const tokenId = response.tokenId
-  const result = await axios.post('http://localhost:5000/api/v1/login', {
+  const result = await axios.post('/login', {
     id_token: tokenId,
 
   })
@@ -26,7 +27,7 @@ const getAllMovies = async () => {
   const requestHeaders = {
     Authorization: `Bearer ${localStorage.getItem("token")}` as string
   }
-    const result = await axios.get('http://localhost:5000/api/v1/movies', {headers: requestHeaders })
+    const result = await axios.get('/movies', {headers: requestHeaders })
     console.log("allMoviee:", result)
   }
 
