@@ -13,7 +13,9 @@ export const googleStrategy = new GoogleTokenStrategy(
   },
   (parsedToken: any, googleId: any, done: any) => {
     const email = parsedToken.payload.email
-    done(null, email)
+    const role = 'admin'
+    const user = { email: email, role: role }
+    done(null, user)
   }
 )
 

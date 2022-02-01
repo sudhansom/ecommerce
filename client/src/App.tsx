@@ -24,7 +24,7 @@ function App() {
 const getAllMovies = async () => {
   
   const requestHeaders = {
-    Authorization: `Bearer ${localStorage.getItem("token")}`
+    Authorization: `Bearer ${localStorage.getItem("token")}` as string
   }
     const result = await axios.get('http://localhost:5000/api/v1/movies', {headers: requestHeaders })
     console.log("allMoviee:", result)
