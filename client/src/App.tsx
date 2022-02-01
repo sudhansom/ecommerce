@@ -3,6 +3,9 @@ import axios from 'axios'
 import './App.css';
 import GoogleLogin from 'react-google-login'
 
+type Response = {
+  token: string
+}
 
 function App() {
   const responseGoogle = async (response: any) => {
@@ -11,6 +14,8 @@ function App() {
   const result = await axios.post('http://localhost:5000/api/v1/login', {
     id_token: tokenId,
   })
+  console.log(result.data)
+  localStorage.setItem("token", result.data)
   
 }
   return (
