@@ -35,7 +35,9 @@ const updateProduct = async (
   productId: string,
   update: Partial<ProductDocument>
 ): Promise<ProductDocument | null> => {
-  const foundProduct = await Product.findByIdAndUpdate(productId, update)
+  const foundProduct = await Product.findByIdAndUpdate(productId, update, {
+    new: true,
+  })
   console.log('updated product  ', foundProduct)
   if (!foundProduct) {
     throw new NotFoundError(`Product ${productId} not found`)

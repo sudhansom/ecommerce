@@ -100,7 +100,7 @@ export const updateProduct = async (
   try {
     const productId = req.params.productId
     const update = req.body
-    const foundProduct = ProductService.updateProduct(productId, update)
+    const foundProduct = await ProductService.updateProduct(productId, update)
     res.json(foundProduct)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
