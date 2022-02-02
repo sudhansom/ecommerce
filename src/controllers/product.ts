@@ -73,3 +73,21 @@ export const findProductById = async (
     }
   }
 }
+
+export const deleteProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const productId = req.params.productId
+    const foundProduct = ProductService.deleteProduct(productId)
+    res.json(foundProduct)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
