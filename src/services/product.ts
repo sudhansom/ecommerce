@@ -1,3 +1,4 @@
+import { NotFoundError } from '../helpers/apiError'
 import Product, { ProductDocument } from '../models/Product'
 
 const createProduct = async (
@@ -8,8 +9,19 @@ const createProduct = async (
 const findAllProducts = async (): Promise<ProductDocument[]> => {
   return await Product.find()
 }
+const findProductById = async (
+  productId: string
+): Promise<ProductDocument | null> => {
+  const foundProduct = await Product.findById(productId)
+  if (!foundProduct) {
+    throw new NotFoundError(`Product ${productId} not found`)
+  } else {
+    return foundProduct
+  }
+}
 
 export default {
   createProduct,
   findAllProducts,
+  findProductById,
 }

@@ -55,3 +55,21 @@ export const findAllProducts = async (
     }
   }
 }
+
+export const findProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const productId = req.params.productId as string
+    const foundProduct = await ProductService.findProductById(productId)
+    res.json(foundProduct)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
