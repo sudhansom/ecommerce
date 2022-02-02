@@ -20,7 +20,7 @@ const ordersSchema = new mongoose.Schema({
       ref: 'Users',
     },
   ],
-  orderItem: '',
+  orderItem: [],
   completed: {
     type: Boolean,
     default: false,
