@@ -46,7 +46,7 @@ export const findAllProducts = async (
 ) => {
   try {
     const allProducts = await ProductService.findAllProducts()
-    return allProducts
+    res.json(allProducts)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
