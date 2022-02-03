@@ -1,4 +1,5 @@
 import express from 'express'
+import passport from 'passport'
 
 import {
   createUser,
@@ -15,6 +16,6 @@ router.get('/', findAll)
 router.get('/:userId', findUserById)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
-router.post('/', createUser)
+router.post('/', passport.authenticate('jwt', { session: false }), createUser)
 
 export default router
