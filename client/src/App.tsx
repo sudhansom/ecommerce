@@ -27,19 +27,19 @@ const getAllMovies = async () => {
   
     const result = await axios.post<MovieDocument>('/movies', {
         "genres": [
-            'emotional',
+            'action',
             'love'
         ],
         "characters": [
-            "me",
-            "you"
+            "you",
+            "your friends"
         ],
-        "name": "Home",
+        "name": "Jungle",
         "publishedYear": 2022,
         "duration": 100,
     }
     )
-    console.log("allMoviee:", result)
+    console.log("created Movie:", result)
   }
 
 useEffect(()=>{
