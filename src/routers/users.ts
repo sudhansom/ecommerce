@@ -14,8 +14,16 @@ const router = express.Router()
 // Every path we define here will get /api/v1/movies prefix
 router.get('/', findAll)
 router.get('/:userId', findUserById)
-router.put('/:userId', updateUser)
-router.delete('/:userId', deleteUser)
+router.put(
+  '/:userId',
+  passport.authenticate('jwt', { session: false }),
+  updateUser
+)
+router.delete(
+  '/:userId',
+  passport.authenticate('jwt', { session: false }),
+  deleteUser
+)
 router.post('/', passport.authenticate('jwt', { session: false }), createUser)
 
 export default router
