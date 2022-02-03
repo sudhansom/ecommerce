@@ -25,6 +25,6 @@ router.put(
   updateMovie
 )
 router.delete('/:movieId', deleteMovie)
-router.post('/', createMovie)
+router.post('/', passport.authenticate('jwt', { session: false }), createMovie)
 
 export default router
