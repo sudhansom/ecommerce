@@ -1,5 +1,5 @@
 import express from 'express'
-
+import passport from 'passport'
 import {
   findAllProducts,
   createProduct,
@@ -10,7 +10,11 @@ import {
 
 const router = express.Router()
 
-router.post('/', createProduct)
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  createProduct
+)
 router.get('/', findAllProducts)
 router.get('/:productId', findProductById)
 router.delete('/:productId', deleteProduct)
