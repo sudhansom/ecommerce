@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios'
 import './App.css';
 import GoogleLogin from 'react-google-login'
+import { MovieDocument } from '../../src/models/Movie'
 
 type Response = {
   token: string
@@ -24,7 +25,20 @@ function App() {
 }
 const getAllMovies = async () => {
   
-    const result = await axios.get('/movies')
+    const result = await axios.post<MovieDocument>('/movies', {
+        "genres": [
+            'emotional',
+            'love'
+        ],
+        "characters": [
+            "me",
+            "you"
+        ],
+        "name": "Home",
+        "publishedYear": 2022,
+        "duration": 100,
+    }
+    )
     console.log("allMoviee:", result)
   }
 
