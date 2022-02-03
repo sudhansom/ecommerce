@@ -22,6 +22,10 @@ router.delete(
   passport.authenticate('jwt', { session: false }),
   deleteProduct
 )
-router.patch('/:productId', updateProduct)
+router.patch(
+  '/:productId',
+  passport.authenticate('jwt', { session: false }),
+  updateProduct
+)
 
 export default router
