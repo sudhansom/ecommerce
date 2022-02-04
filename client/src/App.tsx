@@ -25,20 +25,7 @@ function App() {
 }
 const getAllMovies = async () => {
   
-    const result = await axios.post<MovieDocument>('/movies', {
-        "genres": [
-            'action',
-            'love'
-        ],
-        "characters": [
-            "you",
-            "your friends"
-        ],
-        "name": "Jungle",
-        "publishedYear": 2022,
-        "duration": 100,
-    }
-    )
+    const result = await axios.get<MovieDocument []>('/movies')
     console.log("created Movie:", result)
   }
 
